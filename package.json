@@ -1,0 +1,115 @@
+{
+  "name": "@folio/oai-pmh",
+  "version": "1.3.1",
+  "description": "OAI-PMH manager",
+  "main": "src/index.js",
+  "repository": "folio-org/ui-oai-pmh",
+  "publishConfig": {
+    "registry": "https://repository.folio.org/repository/npm-folio/"
+  },
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=8.9.0"
+  },
+  "scripts": {
+    "start": "stripes serve",
+    "build": "stripes build --output ./output",
+    "test": "stripes test karma",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@bigtest/interactor": "^0.8.1",
+    "@bigtest/mocha": "^0.5.1",
+    "@bigtest/react": "^0.1.2",
+    "@folio/eslint-config-stripes": "^5.2.0",
+    "@folio/stripes": "^5.0.0",
+    "@folio/stripes-cli": "^1.15.0 || ^1.14.0",
+    "@folio/stripes-components": "^8.0.0",
+    "@folio/stripes-core": "^6.0.0",
+    "babel-eslint": "^9.0.0",
+    "chai": "^4.2.0",
+    "core-js": "^3.6.1",
+    "eslint": "^6.2.1",
+    "faker": "^4.1.0",
+    "inflected": "^2.0.4",
+    "miragejs": "^0.1.40",
+    "mocha": "^6.1.3",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-intl": "5.8.8",
+    "react-redux": "^5.1.1",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.0.0",
+    "regenerator-runtime": "^0.13.3",
+    "sinon": "^7.3.2"
+  },
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "prop-types": "^15.6.0",
+    "react-final-form": "^6.3.0",
+    "react-final-form-arrays": "^3.1.2",
+    "react-hot-loader": "^4.12.21",
+    "react-router-prop-types": "^1.0.4"
+  },
+  "peerDependencies": {
+    "@folio/stripes": "^5.0.0",
+    "core-js": "^3.6.1",
+    "react": "*",
+    "react-intl": "5.8.8",
+    "react-router-dom": "^5.2.0"
+  },
+  "stripes": {
+    "actsAs": [
+      "settings"
+    ],
+    "type": "settings",
+    "displayName": "ui-oai-pmh.meta.title",
+    "route": "/oai-pmh",
+    "hasSettings": true,
+    "icons": [
+      {
+        "name": "app",
+        "alt": "OAI-PMH manager",
+        "title": "OAI-PMH manager"
+      }
+    ],
+    "okapiInterfaces": {
+      "configuration": "2.0",
+      "oai-pmh": "3.0"
+    },
+    "permissionSets": [
+      {
+        "permissionName": "settings.oai-pmh.enabled",
+        "displayName": "Settings (oai-pmh): display list of settings pages",
+        "subPermissions": [
+          "settings.enabled"
+        ],
+        "visible": false
+      },
+      {
+        "permissionName": "ui-oai-pmh.view",
+        "displayName": "Settings (OAI-PMH): Display list of settings pages",
+        "subPermissions": [
+          "settings.oai-pmh.enabled",
+          "configuration.entries.collection.get",
+          "oai-pmh.sets.item.get",
+          "oai-pmh.filtering-conditions.get",
+          "oai-pmh.sets.item.collection.get"
+        ],
+        "visible": true
+      },
+      {
+        "permissionName": "ui-oai-pmh.edit",
+        "displayName": "Settings (OAI-PMH): Can view and edit settings",
+        "subPermissions": [
+          "ui-oai-pmh.view",
+          "configuration.entries.item.put",
+          "oai-pmh.sets.item.put",
+          "oai-pmh.sets.item.post",
+          "oai-pmh.sets.item.delete"
+        ],
+        "visible": true
+      }
+    ]
+  }
+}
